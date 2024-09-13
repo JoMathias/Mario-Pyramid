@@ -17,7 +17,6 @@ printPyramid(5);
  */
 function printPyramid(height) {
     console.log("Yippee! I'm printing a pyramid!");
-    console.log("Check back soon, our developers are hard at work as we speak!");
 
     // TODO #1
     // print that pyramid!
