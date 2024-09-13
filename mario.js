@@ -22,19 +22,26 @@ function printPyramid(height) {
     // TODO #1
     // print that pyramid!
   let layer = "";
+  let rowStr = "";
+
   for (let level = 1; level <= height; level++) {
     // printing spaces
     for (let slope = 0; slope < height - level; slope++) {
-      layer += " ";
+      layer += ".";
     }
     // printing star
     for (let brick = 0; brick < level; brick++) {
       layer += "*";
     }
     layer += "*\n";
+    
+    
   }
   console.log(layer);
+  
+
+
 
     
-
+  
 }
