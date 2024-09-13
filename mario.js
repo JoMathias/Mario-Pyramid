@@ -16,26 +16,25 @@ printPyramid(5);
  *      ######
  */
 function printPyramid(height) {
-    console.log("Uh oh... the pyramid is under construction.");
+    console.log("Yippee! I'm printing a pyramid!");
     console.log("Check back soon, our developers are hard at work as we speak!");
 
     // TODO #1
     // print that pyramid!
-    let bricks = "#" //declaring and assigning brick
-    let spaces = ' '; //declaring and assigning space
-
-  
-    //you will need to use a for loop nested inside another for loop.
-  for(let layer = space+space+brick+brick; layer < height;){  //outer loop
-      str = "";
-      for(let j=0; j<rows+1; j++){//inner loop
-
-        layer += brick; //this adds a # to the end of the string.
-
-      }
-
-      console.log(str); //once a row is done we print it out
+  let layer = "";
+  for (let level = 1; level <= height; level++) {
+    // printing spaces
+    for (let slope = 0; slope < height - level; slope++) {
+      layer += " ";
     }
+    // printing star
+    for (let brick = 0; brick < level; brick++) {
+      layer += "*";
+    }
+    layer += "*\n";
+  }
+  console.log(layer);
+
     
 
 }
