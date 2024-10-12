@@ -1,7 +1,4 @@
-
-printPyramid(5);
 // TODO #2
-// Take in user input for the height
 
 
 /*
@@ -16,10 +13,11 @@ printPyramid(5);
  *      ######
  */
 function printPyramid(height) {
-    console.log("Yippee! I'm printing a pyramid!");
+  height = document.getElementById("height").value
+  console.log("Yippee! I'm printing a pyramid!");
 
-    // TODO #1
-    // print that pyramid!
+  // TODO #1
+  // print that pyramid!
   let layer = ""; //console value
   let rowStr = ""; //html value
   for (let level = 1; level <= height; level++) {
@@ -34,19 +32,12 @@ function printPyramid(height) {
       rowStr += "*";
     }
     layer += "*";
-    rowStr += "*<br>";
+    rowStr += "*<p></p>";
     layer += "\n";
     
-    
 
-   
-    
   }
   console.log(layer); //prints to console
-  document.getElementById("rowStr").innerHTML = rowStr; //adds to html
+  document.getElementById("pyramid").innerHTML = rowStr; //prints to html
 
-
-
-    
-  
 }
