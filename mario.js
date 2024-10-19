@@ -1,43 +1,109 @@
-// TODO #2
+var heightElem = document.getElementById("height");
+var formElem = document.getElementById("draw-form");
+
+// set a handler function for the form's submission event
+formElem.onsubmit = function(event) {
+
+    // QUIZ
+    // what happens if we don't do this?
+    event.preventDefault();
+    //The event.preventDefault() method prevents the form from reverting back to its default page as soon after the results are displayed.
+
+    // QUIZ
+    // what happens if we don't do this?
+    clearError("");
+    //The error will remain there if the user submits the form again.
+
+    // figure out the height the user typed
+    heightStr = heightElem.value;
+
+    // TODO 1
+    // if they didn't type anything at all, give a different error message,
+    // something like "Please provide a height"
+    if (heightStr == ""){
+        displayError("Please provide a height.");
+        return;
+    }
+
+
+    // convert the string to an int
+    height = parseInt(heightStr);
+
+    // if the height is not-a-number, yell at them and exit early
+    // TODO 2
+    // negative numbers and zero should also be rejected here
+    if (isNaN(height) || height <= 0) {
+        displayError("That's not a valid height.");
+        return;
+    }
+
+    // if the height is absurdly tall, yell at them and exit early
+    var tooTall = 100;
+    if (height > tooTall) {
+        displayError("Are you cray? I can't build a pyramid that tall.");
+        return;
+    }
+
+    // draw pyramid with the specified height
+    drawPyramid(height);
+}
+
+
+/**
+ * displayError
+ *
+ * Displays an error message on the text input, and colors it red
+ */
+function displayError(message) {
+    heightElem.className = "invalid-field";
+    document.querySelector(".error-message").innerHTML = message;
+}
 
 
 /*
- * printPyramid
+ * clearError
  *
- * Prints to the console a pyramid of '#' characters of the specified height
- * For example, if height is 5, the console will look like this:
- *          ##
- *         ###
- *        ####
- *       #####
- *      ######
+ * Undisplays the error message and removes the red CSS style
  */
-function printPyramid(height) {
-  height = document.getElementById("height").value
-  console.log("Yippee! I'm printing a pyramid!");
+function clearError(message) {
+    // TODO 3
+    // implement this function
+    heightElem.className = "valid-field";
+    document.querySelector(".error-message").innerHTML = message;
+}
 
-  // TODO #1
-  // print that pyramid!
-  let layer = ""; //console value
-  let rowStr = ""; //html value
-  for (let level = 1; level <= height; level++) {
-    // printing spaces
-    for (let slope = 0; slope < height - level; slope++) {
-      layer += " ";
-      rowStr += ".";
+
+
+/**
+ * drawPyramid
+ *
+ * Renders, in the HTML document, a Mario pyramid of the specified height
+ */
+function drawPyramid(height) {
+
+    // first, clear the old content
+    document.getElementById("pyramid").innerHTML = "";
+
+    // for each row....
+    for (var row = 0; row < height; row++) {
+
+        // figure out number of bricks and spaces
+        var numBricks = row + 2;
+        var numSpaces = height - row - 1;
+
+        // build up a string for this row
+        var rowStr = "";
+        for (var i = 0; i < numSpaces; i++) {
+            var spaceChar = "&nbsp"; // this is the HTML encoding for a space " "
+            rowStr += spaceChar;
+        }
+        for (var i = 0; i < numBricks; i++) {
+            rowStr += "#";
+        }
+
+        // make a <p> element for this row, and insert it into the #pyramid container
+        rowElem = document.createElement("p");
+        rowElem.innerHTML = rowStr;
+        document.getElementById("pyramid").appendChild(rowElem);
     }
-    // printing star
-    for (let brick = 0; brick < level; brick++) {
-      layer += "*";
-      rowStr += "*";
-    }
-    layer += "*";
-    rowStr += "*<p></p>";
-    layer += "\n";
-
-
-  }
-  console.log(layer); //prints to console
-  document.getElementById("pyramid").innerHTML = rowStr; //prints to html
-
 }
