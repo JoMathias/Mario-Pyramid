@@ -12,11 +12,10 @@
  *       #####
  *      ######
  */
-function printPyramid(height, bricktype) {
+function printPyramid(height) {
   height = document.getElementById("height").value
   console.log("Yippee! I'm printing a pyramid!");
 
-  bricktype = document.getElementById("brick").value
   // TODO #1
   // print that pyramid!
   let layer = ""; //console value
@@ -29,23 +28,16 @@ function printPyramid(height, bricktype) {
     }
     // printing star
     for (let brick = 0; brick < level; brick++) {
-      layer += bricktype;
-      rowStr += bricktype;
+      layer += "*";
+      rowStr += "*";
     }
     layer += "*";
-    rowStr += bricktype + "<p></p>";
+    rowStr += "*<p></p>";
     layer += "\n";
-    
+
 
   }
   console.log(layer); //prints to console
   document.getElementById("pyramid").innerHTML = rowStr; //prints to html
 
 }
-
-function numberLable (height){
-  height = document.getElementById("height").value
-  height = `${height}`
-  document.getElementById("heightLable").innerHTML = height; //prints to html
-}
-//replaces rowStr with document.getElementById("brick").value
